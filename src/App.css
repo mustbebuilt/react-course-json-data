@@ -1,0 +1,16 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.course-item{
+  display: flex;
+  gap:20px;
+  border-bottom: 1px solid #ccc;
+}
+.course-item h3{
+  flex:0 0 30%;
+}
