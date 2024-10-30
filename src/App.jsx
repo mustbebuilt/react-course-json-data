@@ -1,39 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
 import './App.css';
+import Staff from './components/Staff';
+import Student from './components/Student';
+import Business from './components/Business';
+import Courses from './components/Courses';
 
 function App() {
-  const [courseData, setCourseData] = useState(null);
-  const dataUrl = './data/coursedata.json';
 
-  useEffect(() => {
-    fetch(dataUrl)
-      .then(response => response.json())
-      .then(data => {
-        setCourseData(data);
-      });
-  }, []); // Adding an empty dependency array to run useEffect only once when the component mounts
+  const [activeComponent, setActiveComponent] = useState('student');
 
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case 'staff':
+        return <Staff />;
+      case 'student':
+        return <Student />;
+      case 'business':
+        return <Business />;
+      case 'courses':
+          return <Courses />;
+      default:
+        return <Student />;
+    }
+  };
+ 
   return (
     <>
-      <div className="container">
-        <h2>Course Loader Demo</h2>
-
-        {/* Display course data */}
-        <div className="course-list">
-          {courseData ? (
-            courseData.map((course, index) => (
-              <div key={index} className="course-item">
-                <h3>{course.CourseTitle}</h3>
-                <div>
-                <p>{course.CourseSummary}</p>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>Loading courses...</p>
-          )}
-        </div>
-      </div>
+      <Navbar setActiveComponent={setActiveComponent} />
+      <main>
+        {renderComponent()}
+      </main>
     </>
   );
 }
