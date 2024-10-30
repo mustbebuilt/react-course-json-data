@@ -2,23 +2,25 @@ import React from 'react';
 import './Navbar.css';
 
 const Navbar = ({ setActiveComponent }) => {
-  const handleClick = (e, component) => {
-    e.preventDefault(); // Prevents the default link action
-    setActiveComponent(component); // Sets the active component
-  };
+  // Array of link items
+  const navLinks = [
+    { label: 'Staff', component: 'staff' },
+    { label: 'Student', component: 'student' },
+    { label: 'Business', component: 'business' },
+    { label: 'Courses', component: 'courses' }
+  ];
 
   return (
     <nav>
-        <menu>
-            <li><a href="#" onClick={(e) => handleClick(e, 'staff')}>Staff</a></li>
-            <li><a href="#" onClick={(e) => handleClick(e, 'student')}>Student</a></li>
-            <li><a href="#" onClick={(e) => handleClick(e, 'business')}>Business</a></li>
-            <li><a href="#" onClick={(e) => handleClick(e, 'courses')}>Courses</a></li>
-        </menu>
-
-      
-   
-    
+      <ul>
+        {navLinks.map(({ label, component }) => (
+          <li key={component}>
+            <a href="#" onClick={(e) => { e.preventDefault(); setActiveComponent(component); }}>
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };
