@@ -12,7 +12,7 @@ const Navbar = ({ setActiveComponent }) => {
 
   return (
     <nav>
-      <ul>
+      <menu>
         {navLinks.map(({ label, component }) => (
           <li key={component}>
             <a href="#" onClick={(e) => { e.preventDefault(); setActiveComponent(component); }}>
@@ -20,7 +20,7 @@ const Navbar = ({ setActiveComponent }) => {
             </a>
           </li>
         ))}
-      </ul>
+      </menu>
     </nav>
   );
 };
